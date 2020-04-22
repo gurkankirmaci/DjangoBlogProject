@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from home import views
 
+
 urlpatterns = [
     path('', include('home.urls')),
     path('hakkimizda/',views.hakkimizda, name='hakkimizda'),
