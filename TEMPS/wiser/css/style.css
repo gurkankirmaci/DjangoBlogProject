@@ -1328,7 +1328,7 @@ h3 {
 
 /* line 8, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_slider.scss */
 .slider_area .single_slider {
-  height: 960px;
+  height: 850px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1394,6 +1394,7 @@ h3 {
 /* line 45, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_slider.scss */
 .slider_area .single_slider .slider_text > a {
   margin-right: 15px;
+  
 }
 
 @media (max-width: 767px) {
