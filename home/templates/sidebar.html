@@ -6,58 +6,17 @@
         <ul class="mcd-menu">
             {% recursetree category %}
                 <li>
-                    <a href="/category/{{ node.slug }} ">
+                    <a href="/category/{{ node.id }}/{{node.slug}} ">
 					<i class="fa fa-trophy"></i>
 					<strong> {{ node.title }}</strong>
-
-				</a>
-
+                    </a>
                     {% if not node.is_leaf_node %}
                         <ul class="children">
-                            {{ children }}
-
+                              <li> <a href="/category/{{ node.id }}/{{node.slug}} ">{{ children }}</a></li>
                         </ul>
                     {% endif %}
                 </li>
             {% endrecursetree %}
-
-
-
-
-
-
-
-
-
-			<li>
-				<a href="">
-					<i class="fa fa-comments-o"></i>
-					<strong>Blog</strong>
-					<small>what they say</small>
-				</a>
-				<ul>
-					<li><a href="#"><i class="fa fa-globe"></i>Mission</a></li>
-					<li>
-						<a href="#"><i class="fa fa-group"></i>Our Team</a>
-						<ul>
-							<li><a href="#"><i class="fa fa-female"></i>Leyla Sparks</a></li>
-							<li>
-								<a href="#"><i class="fa fa-male"></i>Gleb Ismailov</a>
-								<ul>
-									<li><a href="#"><i class="fa fa-leaf"></i>About</a></li>
-									<li><a href="#"><i class="fa fa-tasks"></i>Skills</a></li>
-								</ul>
-							</li>
-							<li><a href="#"><i class="fa fa-female"></i>Viktoria Gibbers</a></li>
-						</ul>
-					</li>
-					<li><a href="#"><i class="fa fa-trophy"></i>Rewards</a></li>
-					<li><a href="#"><i class="fa fa-certificate"></i>Certificates</a></li>
-				</ul>
-			</li>
-
-
-
-		</ul>
+        </ul>
 	</nav>
 </div>
