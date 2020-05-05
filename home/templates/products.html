@@ -12,7 +12,7 @@
 
 {% block content %}
 <!-- bradcam_area_start  -->
-    <div class=" ">
+    <div class="">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -26,42 +26,53 @@
     <!-- bradcam_area_end  -->
 
    <!--================Blog Area =================-->
-    <section class="blog_area section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mb-5 mb-lg-0">
-                    <div class="blog_left_sidebar">
+ <section class="blog_area section-padding">
+   <div class="container">
+     <div class="row">
+         <div class="col-lg-8 mb-5 mb-lg-0">
+            <div class="blog_left_sidebar">
+                 <section class="blog_area section-padding">
+                     <div class="container">
+                         <div class="row">
+                             <div class="col-lg-7 mb-3 mb-lg-3">
+                                 <div class="blog_left_sidebar">
 
-                         {% for rs in products %}
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="{{rs.image.url}}" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
+                                 {% for rs in products %}
+                                <article class="blog_item">
+                                    <div class="blog_item_img">
+                                        <img class="card-img rounded-0" src="{{rs.image.url}}" alt="">
+                                        <a href="#" class="blog_item_date">
+                                            <h3>15</h3>
+                                            <p>Jan</p>
+                                        </a>
+                                    </div>
+
+
+                                    <div class="blog_details">
+                                        <a class="d-inline-block" href="/product/{{ rs.id }}/{{rs.slug}}">
+                                            <h2>{{ rs.title }}</h2>
+                                        </a>
+                                        <p> {{ rs.detail|safe }} </p>
+                                        <ul class="blog-info-link">
+                                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                        </ul>
+                                    </div>
+                                     {% endfor %}
+                                </article>
+
                             </div>
-
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="/product/{{ rs.id }}/{{rs.slug}}">
-                                    <h2>{{ rs.title }}</h2>
-                                </a>
-                                <p> {{ rs.detail|safe }} </p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
-                            </div>
-                             {% endfor %}
-                        </article>
+                        </div>
 
                     </div>
                 </div>
-
-            </div>
-        </div>
-    </section>
+            </section>
+         </div>
+      </div>
     <!--================Blog Area =================-->
 
+
+   </div>
+  </div>
+ </section>
 {% endblock %}

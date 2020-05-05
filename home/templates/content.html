@@ -1,36 +1,101 @@
  {% load static %}
+ <!-- popular_program_area_start  -->
+    <div class="popular_program_area section__padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title text-center">
+                        <h3>Day Blog</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="custom_tabs text-center">
+                        <div class="nav" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Futbol </a>                               </a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Basketbol </a>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="tab-content" id="nav-tabContent">
+
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="row">
+                         {% for rs in dayproducts %}
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single__program">
+                                <div class="program_thumb">
+                                    <img src="{{rs.image.url}}" alt="" style="height: 210px" >
+                                </div>
+                                <div class="program__content">
+
+                                    <h4>{{rs.title}}</h4>
+                                    <p>{{rs.detail|safe}}</p>
+                                    <a href="/product/{{rs.id}}/{{rs.slug}}" class="boxed-btn5"> Bloga git</a>
+                                </div>
+                            </div>
+                        </div>
+                       {% endfor%}
+
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <div class="row">
+                              {% for rs in dayproducts %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single__program">
+                                    <div class="program_thumb">
+                                        <img src="{{rs.image.url}}" alt="" style="height: 300px">
+                                    </div>
+                                    <div class="program__content">
+                                        <h4>{{rs.title}}</h4>
+                                        <p>{{rs.detail|safe}}</p>
+                                        <a href="/product/{{rs.id}}/{{rs.slug}}" class="boxed-btn5">Bloga git</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+                        </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- popular_program_area_end -->
+
  <!-- latest_coures_area_start  -->
     <div class="latest_coures_area">
         <div class="latest_coures_inner">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="coures_info">
-                            <div class="section_title white_text">
-                                <h3>Latest Courses</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim <br> veniam, quis nostrud exercitation.</p>
-                            </div>
-                            <div class="coures_wrap d-flex">
-                                <div class="single_wrap">
-                                    <div class="icon">
-                                        <i class="flaticon-lab"></i>
-                                    </div>
-                                    <h4>Bachelor of <br>
-                                        Graphic Design</h4>
-                                        <p>Lorem ipsum dolor sit amet, sectetur adipiscing elit, sed do eiusmod tpor incididunt ut piscing vcs.</p>
-                                        <a href="#" class="boxed-btn5">Apply NOw</a>
-                                </div>
-                                <div class="single_wrap">
-                                    <div class="icon">
-                                        <i class="flaticon-lab"></i>
-                                    </div>
-                                    <h4>Bachelor of <br>
-                                        Graphic Design</h4>
-                                        <p>Lorem ipsum dolor sit amet, sectetur adipiscing elit, sed do eiusmod tpor incididunt ut piscing vcs.</p>
-                                        <a href="#" class="boxed-btn5">Apply NOw</a>
-                                </div>
-                            </div>
-                        </div>
+                         <div class="coures_info">
+                             <div class="section_title white_text">
+                                <h3>Latest Blog</h3>
+                                  <p></p>
+                             </div>
+                               <div class="coures_wrap d-flex">
+                                  <div class="single_wrap">
+                                    {% for rs in lastproducts %}
+                                         <h4>{{rs.title}}</h4>
+                                            <p>{{rs.detail|safe}}</p>
+                                             <a href="/product/{{ rs.id }}/{{rs.slug}}" class="boxed-btn2">Bloga git</a>
+                                      {% endfor %}
+                                      </div>
+
+
+                               </div>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -39,164 +104,51 @@
     <!--/ latest_coures_area_end -->
 
     <!-- recent_event_area_strat  -->
-    <div class="recent_event_area section__padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-10">
-                    <div class="section_title text-center mb-70">
-                        <h3 class="mb-45">Recent Event</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="single_event d-flex align-items-center">
-                        <div class="date text-center">
-                            <span>02</span>
-                            <p>Dec, 2020</p>
-                        </div>
-                        <div class="event_info">
-                            <a href="event_details.html">
-                                <h4>How to speake like a nativespeaker?</h4>
-                             </a>
-                            <p><span> <i class="flaticon-clock"></i> 10:30 pm</span> <span> <i class="flaticon-calendar"></i> 21Nov 2020 </span> <span> <i class="flaticon-placeholder"></i> AH Oditoriam</span> </p>
-                        </div>
-                    </div>
-                    <div class="single_event d-flex align-items-center">
-                        <div class="date text-center">
-                            <span>03</span>
-                            <p>Dec, 2020</p>
-                        </div>
-                        <div class="event_info">
-                            <a href="event_details.html">
-                                <h4>How to speake like a nativespeaker?</h4>
-                             </a>
-                            <p><span> <i class="flaticon-clock"></i> 10:30 pm</span> <span> <i class="flaticon-calendar"></i> 21Nov 2020 </span> <span> <i class="flaticon-placeholder"></i> AH Oditoriam</span> </p>
-                        </div>
-                    </div>
-                    <div class="single_event d-flex align-items-center">
-                        <div class="date text-center">
-                            <span>10</span>
-                            <p>Dec, 2020</p>
-                        </div>
-                        <div class="event_info">
-                            <a href="event_details.html">
-                                <h4>How to speake like a nativespeaker?</h4>
-                             </a>
-                            <p><span> <i class="flaticon-clock"></i> 10:30 pm</span> <span> <i class="flaticon-calendar"></i> 21Nov 2020 </span> <span> <i class="flaticon-placeholder"></i> AH Oditoriam</span> </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- recent_event_area_end  -->
 
     <!-- latest_coures_area_start  -->
-    <div data-scroll-index='1' class="admission_area">
-        <div class="admission_inner">
-            <div class="container">
-                <div class="row justify-content-end">
-                    <div class="col-lg-7">
-                        <div class="admission_form">
-                            <h3>Apply for Admission</h3>
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="text" placeholder="First Name" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="text" placeholder="Last Name" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="text" placeholder="Phone Number" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="text" placeholder="Email Address" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="single_input">
-                                            <textarea cols="30" placeholder="Write an Application" rows="10"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="apply_btn">
-                                            <button class="boxed-btn3" type="submit">Apply Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!--/ latest_coures_area_end -->
 
 
     <!-- recent_news_area_start  -->
+
     <div class="recent_news_area section__padding">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-10">
                     <div class="section_title text-center mb-70">
-                        <h3 class="mb-45">Recent News</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <h3 class="mb-45">Sizin için öneriler</h3>
+                        <p>En popüler bloglar</p>
                     </div>
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-md-6">
-                    <div class="single__news">
+                 {% for rs in randomproducts %}
+               <div class="col-md-6">
+                   <div class="single__news">
                         <div class="thumb">
-                            <a href="single-blog.html">
-                                <img src=" {% static 'img/news/1.png' %}" alt="">
+                            <a href="/product/{{ rs.id }}/{{rs.slug}}">
+                                <img src=" {{rs.image.url}}" alt="" style="height: 300px">
                             </a>
                             <span class="badge">Group Study</span>
                         </div>
                         <div class="news_info">
-                            <a href="single-blog.html">
-                                <h4>Those Other College Expenses You
-                                    Aren’t Thinking About</h4>
+                            <a href="/product/{{ rs.id }}/{{rs.slug}}">
+                                <h4>{{rs.title}}</h4>
                             </a>
-                            <p class="d-flex align-items-center"> <span><i class="flaticon-calendar-1"></i> May 10, 2020</span>
+                            <p class="d-flex align-items-center"> <span><i class="flaticon-calendar-1"></i>{{rs.date}}</span>
 
-                            <span> <i class="flaticon-comment"></i> 01 comments</span>
+                            <span> <i class="flaticon-comment"></i>{{rs.comment}}</span>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="single__news">
-                        <div class="thumb">
-                            <a href="single-blog.html">
-                                <img src=" {% static 'img/news/2.png' %}" alt="">
-                            </a>
-                            <span class="badge bandge_2">Hall Life</span>
-                        </div>
-                        <div class="news_info">
-                            <a href="single-blog.html">
-                                <h4>Those Other College Expenses You
-                                    Aren’t Thinking About</h4>
-                            </a>
-                            <p class="d-flex align-items-center"> <span><i class="flaticon-calendar-1"></i> May 10, 2020</span>
-
-                            <span> <i class="flaticon-comment"></i> 01 comments</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            {% endfor %}
             </div>
         </div>
     </div>
+
     <!-- recent_news_area_end  -->
