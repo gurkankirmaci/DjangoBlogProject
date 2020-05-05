@@ -1,0 +1,67 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ categorydata.title }} Products {% endblock %}
+{% block keywords %} {{ categorydata.keywords }}  {% endblock %}
+{% block description %}{{ categorydata.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+
+
+{% block content %}
+<!-- bradcam_area_start  -->
+    <div class=" ">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{ categorydata.title }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- bradcam_area_end  -->
+
+   <!--================Blog Area =================-->
+    <section class="blog_area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="blog_left_sidebar">
+
+                         {% for rs in products %}
+                        <article class="blog_item">
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0" src="{{rs.image.url}}" alt="">
+                                <a href="#" class="blog_item_date">
+                                    <h3>15</h3>
+                                    <p>Jan</p>
+                                </a>
+                            </div>
+
+
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="/product/{{ rs.id }}/{{rs.slug}}">
+                                    <h2>{{ rs.title }}</h2>
+                                </a>
+                                <p> {{ rs.detail|safe }} </p>
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                </ul>
+                            </div>
+                             {% endfor %}
+                        </article>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+
+{% endblock %}
