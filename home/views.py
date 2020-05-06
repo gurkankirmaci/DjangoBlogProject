@@ -7,6 +7,8 @@ from home.models import Setting, ContactFormu, ContactFormMessage
 
 from product.models import Product,Category
 
+from product.models import Images
+
 
 def index(request):
     setting = Setting.objects.get(pk=1)
@@ -66,3 +68,13 @@ def category_products(request,id,slug):
                'categorydata': categorydata}
     return render(request,'products.html',context)
 
+def product_detail(request,id,slug):
+    category = Category.objects.all()
+    product = Product.objects.get(pk=id)
+    images  = Images.objects.filter(product_id=id)
+    context = {'product': product,
+               'category':category,
+               'images': images,
+               }
+
+    return render(request,'product_detail.html',context)

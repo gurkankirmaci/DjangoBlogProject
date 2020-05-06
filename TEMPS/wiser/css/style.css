@@ -1328,7 +1328,7 @@ h3 {
 
 /* line 8, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_slider.scss */
 .slider_area .single_slider {
-  height: 850px;
+  height: 800px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -2632,7 +2632,7 @@ h3 {
 
 /* line 1, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_bradcam.scss */
 .breadcam_bg {
-  background-image: url(../img/banner/bradcam.png);
+  background-image: url(../img/banner/indir.png);
 }
 
 /* line 5, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_bradcam.scss */
@@ -2640,7 +2640,7 @@ h3 {
   padding: 170px;
   background-size: cover;
   background-position: center center;
-  padding: 171px 0px;
+  padding: 80px 0px;
   background-repeat: no-repeat;
 }
 

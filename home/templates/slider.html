@@ -6,14 +6,14 @@
             <!-- single_carouse -->
 
              {% for rs in sliderdata %}
-            <div class="single_slider  d-flex align-items-center" >
+            <div class="single_slider  d-flex align-items-center"  style="height: 600px">
                 <img src= " {{rs.image.url }}">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="slider_text ">
                                 <h3>{{ rs.title }}</h3>
-                                <a href="/product/ {{rs.id}}/{{rs.slug}} " class="boxed-btn3" >{{ rs.description}}</a>
+                                <a href="/product/{{rs.id}}/{{rs.slug}}" class="boxed-btn3" >{{ rs.description}}</a>
 
                               <!--  <a href="#" class="boxed-btn4">Take a tour</a>*//  -->
                             </div>
