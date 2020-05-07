@@ -1,0 +1,321 @@
+{% extends "homebase.html" %}
+
+{% block title %} Blog  {{ product.title }}  {% endblock %}
+{% block keywords %} {{ product.keywords }} {% endblock %}
+{% block description %}{{ product.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+{% block content %}
+
+      <div class="bradcam_area breadcam_bg"  style=" padding: 170px;
+      background-size: cover;
+      background-position: center center;
+      padding: 50px 0px;
+      background-repeat: no-repeat;">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-8" >
+                      <div class="navbar_text">
+                          <ul class="" style=" list-style: none outside none;">
+                          <li style="  position: relative;
+                                        display: inline;
+                                        margin: 2px;">Home ></li>
+                          <li style="  position: relative;
+                                        display: inline;
+                                        margin: 2px;">Product ></li>
+                          <li style="  position: relative;
+                                        display: inline;
+                                        margin: 2px;"><a href="/category/{{ product.category_id }}/{{ product.category.slug }}"> {{product.category}} >  </a></li>
+                          <li  class="active" style="color: red  ; position: relative;
+                                        display: inline;
+                                        margin: 2px; ">{{product.title}}</li>
+                              </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- bradcam_area_end  -->
+
+
+     <!--================Blog Area =================-->
+       <section class="blog_area single-post-area section-padding">
+          <div class="container">
+             <div class="row">
+                <div class="col-lg-8 posts-list">
+                   <div class="single-post">
+                      <div class="feature-img">
+                         <img class="img-fluid" src="{{product.image.url}}" alt="">
+
+                      <div class="blog_details">
+                         <h2>{{product.title}}
+                         </h2>
+                         <ul class="blog-info-link mt-3 mb-4">
+                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                         </ul>
+                         <p class="excert">
+                            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                            should have to spend money on boot camp when you can get the MCSE study materials yourself at a
+                            fraction of the camp price. However, who has the willpower
+                         </p>
+                         <p>
+                            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                            should have to spend money on boot camp when you can get the MCSE study materials yourself at a
+                            fraction of the camp price. However, who has the willpower to actually sit through a
+                            self-imposed MCSE training. who has the willpower to actually
+                         </p>
+                         <div class="quote-wrapper">
+                            <div class="quotes">
+                               MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                               should have to spend money on boot camp when you can get the MCSE study materials yourself at
+                               a fraction of the camp price. However, who has the willpower to actually sit through a
+                               self-imposed MCSE training.
+                            </div>
+                         </div>
+                         <p>
+                            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                            should have to spend money on boot camp when you can get the MCSE study materials yourself at a
+                            fraction of the camp price. However, who has the willpower
+                         </p>
+                         <p>
+                            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                            should have to spend money on boot camp when you can get the MCSE study materials yourself at a
+                            fraction of the camp price. However, who has the willpower to actually sit through a
+                            self-imposed MCSE training. who has the willpower to actually
+                         </p>
+                      </div>
+                   </div>
+
+
+                               <div class="container">
+                    <div class="card">
+                        <div class="container-fliud">
+                            <div class="wrapper row">
+                                <div class="preview col-md-6">
+
+                                    <div class="preview-pic tab-content">
+
+                                      <div class="tab-pane active" id="pic-1"><img src="{{product.image.url}}" /></div>
+                                     {% for rs in images %}
+                                        <div class="tab-pane" id="pic-2"><img src="{{rs.image.url}}"  /></div>
+                                     {% endfor %}
+                                    </div>
+
+
+
+                                    <ul class="preview-thumbnail nav nav-tabs">
+
+                                      <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{product.image.url}}" /></a></li>
+                                     {% for rs in images %}
+                                      <li><a data-target="#pic-2" data-toggle="tab"><img src="{{rs.image.url}}" /></a></li>
+                                     {% endfor %}
+                                    </ul>
+
+                                </div>
+                                <div class="details col-md-6">
+                                    <h3 class="product-title">{{product.title}}</h3>
+                                    <div class="rating">
+                                        <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                        <span class="review-no">41 reviews</span>
+                                    </div>
+                                    <p class="product-description">{{product.description}}</p>
+                                    <h4 class="price">current price: <span>$180</span></h4>
+                                    <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+
+             <div class="navigation-top">
+                  <div class="d-sm-flex justify-content-between text-center">
+                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
+                        people like this</p>
+                     <div class="col-sm-4 text-center my-2 my-sm-0">
+                        <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
+                     </div>
+                     <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                     </ul>
+                  </div>
+                  <div class="navigation-area">
+                     <div class="row">
+                        <div
+                           class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                           <div class="thumb">
+                              <a href="#">
+                                 <img class="img-fluid" src="img/post/preview.png" alt="">
+                              </a>
+
+                           </div>
+                           <div class="arrow">
+                              <a href="#">
+                                 <span class="lnr text-white ti-arrow-left"></span>
+                              </a>
+                           </div>
+                           <div class="detials">
+                              <p>Prev Post</p>
+                              <a href="#">
+                                 <h4>Space The Final Frontier</h4>
+                              </a>
+                           </div>
+                        </div>
+                        <div
+                           class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                           <div class="detials">
+                              <p>Next Post</p>
+                              <a href="#">
+                                 <h4>Telescopes 101</h4>
+                              </a>
+                           </div>
+                           <div class="arrow">
+                              <a href="#">
+                                 <span class="lnr text-white ti-arrow-right"></span>
+                              </a>
+                           </div>
+                           <div class="thumb">
+                              <a href="#">
+                                 <img class="img-fluid" src="img/post/next.png" alt="">
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="blog-author">
+                  <div class="media align-items-center">
+                     <img src="img/blog/author.png" alt="">
+                     <div class="media-body">
+                        <a href="#">
+                           <h4>Harvard milan</h4>
+                        </a>
+                        <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
+                           our dominion twon Second divided from</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="comments-area">
+                  <h4><b  style="color:#0b0b0b ">Blog Yorumları</b> </h4>
+
+                   {% for rs in comments %}
+                  <div class="comment-list">
+                     <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                           <div class="thumb">
+                              <img src="" alt="">
+                           </div>
+                           <div class="desc">
+                              <p class="comment">
+                                 {{ rs.comment }}
+                              </p>
+                              <div class="d-flex justify-content-between">
+                                 <div class="d-flex align-items-center">
+                                     <h5>
+                                      <b> <i href="name">{{ rs.user }}</i> </b>
+                                     </h5>
+
+                                      <p class="date">{{ rs.create_at }} </p>
+
+                                      <i class="fa fa-star checked "> / {{ rs.rate }} yıldız </i>
+
+                                 </div>
+                               </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                   {% endfor %}
+
+               </div>
+
+                <div class="comment-form">
+                       <h4>Mesajinizi Yazin</h4>
+                       {% if messages %}
+                             {% for message in messages %}
+                                 <div class="alert alert-{{message.tags}}" role="alert">
+                                      {{ message }}
+                                 </div>
+                             {% endfor %}
+                       {% endif %}
+
+                 <div class="comment-form" >
+
+                  <form class="form-contact comment_form"  id="commentForm"  action="/product/addcomment/{{ product.id }}"  method="post">
+                      {% csrf_token %}
+                       <div class="row">
+
+                         <div class="col-sm-6">
+                           <div class="form-group">
+                              <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                           </div>
+                        </div>
+
+                        <div class="col-12">
+                           <div class="form-group">
+                              <input class="form-control" name="subject" id="subject" type="text" placeholder="subject">
+                           </div>
+                        </div>
+
+
+                        <div class="col-12">
+                           <div class="form-group">
+                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                                 placeholder="Write Comment"></textarea>
+                           </div>
+                        </div>
+                       </div>
+                        <div class="details col-md-6">
+                             <h3 class="product-title">rating</h3>
+
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rate" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+
+                            <input type="radio" id="star4" name="rate" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+
+                            <input type="radio" id="star3" name="rate" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+
+                            <input type="radio" id="star2" name="rate" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                            <input type="radio" id="star1" name="rate" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+
+                        </fieldset>
+
+                       </div>
+
+                      {% if user.id is not None %}
+                     <div class="form-group">
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                      </div>
+                      {% else %}
+                      yorum eklemek için<a href="/login"> login </a> olunuz !
+                      {% endif %}
+
+                  </form>
+               </div>
+
+
+
+           </div>
+        </div>
+      </div>
+
+   </div>
+</section>
+   <!--================ Blog Area end =================-->
+{% endblock %}
