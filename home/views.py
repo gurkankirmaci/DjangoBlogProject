@@ -2,12 +2,15 @@ from django.http import  HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 
+
 # Create your views here.
 from home.models import Setting, ContactFormu, ContactFormMessage
 
 from product.models import Product,Category
 
 from product.models import Images,Comment
+
+from home.forms import SearchForm
 
 
 def index(request):
@@ -80,3 +83,17 @@ def product_detail(request,id,slug):
                }
 
     return render(request,'product_detail.html',context)
+
+def product_search(request):
+    if request.method == 'POST': #form post edildiyse
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            category = Category.objects.all()
+            query = form.cleaned_data['query']  #formdan bilgiyi al
+            products = Product.objects.filter(title__icontains= query)  #select * from product where title like %query%
+            #return HttpResponse(products)
+            context = {'products': products,
+                       'category': category,
+                        }
+            return render(request, 'products_search.html',context)
+    return HttpResponseRedirect('/')

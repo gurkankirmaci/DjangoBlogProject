@@ -51,7 +51,20 @@
                                     </div>
                                     <div class="Appointment">
                                         <div class="book_btn d-none d-lg-block">
-                                            <a data-scroll-nav='1' href="#">Apply NOw</a>
+                                    <!--form start    -->
+                                    <form action="search/" method="post">
+                                        {% csrf_token %}
+
+                                                <input name="query"  type="text" class="form-control" placeholder='Search Keyword'
+                                                    onfocus="this.placeholder = ''"
+                                                    onblur="this.placeholder = 'Search Keyword'">
+
+                                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                            type="submit"><i class="ti-search"></i></button>
+                                    </form>
+
+                                   <!--form end    -->
+
                                         </div>
                                     </div>
                                 </div>
