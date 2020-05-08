@@ -1,0 +1,49 @@
+{% extends "homebase.html" %}
+
+{% block title %} Products Search Result  {% endblock %}
+{% block keywords %} {{ categorydata.keywords }} {% endblock %}
+{% block description %}{{ categorydata.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+
+
+{% block content %}
+
+   <div class="section" style="padding:50px">
+
+    <div class="container">
+
+            <div class="row">
+
+
+                <table cellpadding="3" width="1200" >
+                   <tr>
+                       <th>image</th>
+                       <th>Product Name</th>
+                       <th>Category</th>
+
+                   </tr>
+                   {% for rs in products  %}
+                     <tr>
+                         <td> <a href="/product/{{ rs.id }}/{{ rs.slug }}"> <img src="{{ rs.img.url }}" style="" alt=""></a> </td>
+                         <td> <h4 class="product-name"><a href="/product/{{ rs.id }}/{{ rs.slug }}"> {{ rs.title }} </a> </h4> </td>
+                         <td> <a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}"> {{ rs.category }}  </a> </td>
+
+                   </tr>
+                   {% endfor  %}
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
