@@ -1,6 +1,7 @@
 from django.http import  HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
+import json
 
 
 # Create your views here.
@@ -89,11 +90,33 @@ def product_search(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             category = Category.objects.all()
+
             query = form.cleaned_data['query']  #formdan bilgiyi al
-            products = Product.objects.filter(title__icontains= query)  #select * from product where title like %query%
+            catid = form.cleaned_data['catid']  #get form data
+
+            if catid == 0:
+                     products = Product.objects.filter(title__icontains= query)  #select * from product where title like %query%
+            else:
+                     products = Product.objects.filter(title__icontains=query,category_id = catid)
+
             #return HttpResponse(products)
             context = {'products': products,
                        'category': category,
                         }
             return render(request, 'products_search.html',context)
     return HttpResponseRedirect('/')
+
+def product_search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term','')
+        product = Product.objects.filter(title__icontains= q)
+        results=[]
+        for rs in product:
+            product_json = {}
+            product_json = rs.title
+            results.append(product_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data,mimetype)
