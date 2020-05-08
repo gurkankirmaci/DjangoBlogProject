@@ -1,4 +1,56 @@
  {% load static %}
+
+     <!-- Search -->
+                                 <script>
+
+                                  $(function() {
+                                    $("#query").autocomplete({
+                                      source: "/search_auto/",
+                                      select: function (event, ui) { //item selected
+                                        AutoCompleteSelectHandler(event, ui)
+                                      },
+                                      minLength: 2,
+                                    });
+                                  });
+
+                                  function AutoCompleteSelectHandler(event, ui)
+                                  {
+                                    var selectedObj = ui.item;
+                                  }
+
+                                </script>
+
+                           <div class="col-lg-3" style="float:right"  >
+                             <div class="blog_right_sidebar">
+                                <div class="header-search" style="">
+                                    <form action="/search/" method="post">
+                                        {% csrf_token %}
+                                        <input class="input search-input" id="query" name="query" type="text" placeholder="Aradığınız Bloğu giriniz">
+
+                                        {% load mptt_tags %}
+
+                                        <select name="catid" class="input search-categories">
+                                            <option value="0">Tüm Kategoriler</option>
+                                            {% recursetree category %}
+
+                                                {% if node.is_leaf_node %}
+                                                    <option value="{{ node.id}}"> {{ node.title}} </option>
+                                                {% endif %}
+                                                {% if not node.is_leaf_node %}
+                                                      <optgroup label="{{ node.title }}">
+                                                        {{ children }}
+                                                      </optgroup>
+                                                 {% endif %}
+                                            {% endrecursetree %}
+                                        </select>
+
+                                        <button class="search-btn"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+					          </div>
+                           </div>
+                        <!-- /Search -->
+
  <!-- popular_program_area_start  -->
     <div class="popular_program_area section__padding">
         <div class="container">

@@ -1,3 +1,4 @@
+from django.contrib.auth import logout, authenticate, login
 from django.http import  HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
@@ -120,3 +121,25 @@ def product_search_auto(request):
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data,mimetype)
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            # Redirect to a success page.
+            return HttpResponseRedirect('/')
+        else:
+            # Return an 'invalid login' error message.
+            messages.warning(request, "Login Hatası ! Kullanıcı Adı veya Şifreniz Hatalı")
+            return HttpResponseRedirect('/login')
+    category = Category.objects.all()
+    context = {'category': category,
+               }
+    return render(request, 'login.html', context)

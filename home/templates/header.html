@@ -11,34 +11,31 @@
                                 <div class="text_wrap">
                                     <p><span>Sorularınız için...</span> <span>info@domain.com</span></p>
                                 </div>
-                                <div class="text_wrap">
-                                    <p><a href="#"> <i class="ti-user"></i>Login</a> <a href="#">Register</a></p>
-                                </div>
+
+                                   <div class="text_wrap">
+                                          {% if user.id is not None  %}
+                                                <div class="dropdown">
+                                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        {{user.first_name}}
+                                                      </button>
+                                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#">Action</a>
+                                                        <a href="/logout/" style="padding: 10px"><i class="fa fa-check-circle-o"></i>logout</a>
+                                                      </div>
+                                                </div>
+
+                                          {% else %}
+
+                                                 <p><a href="/join/" style="padding:5px"><i class="fa fa-key"></i>Register</a>
+                                                  <a href="/login/"><i class="ti-user"></i>Login</a></p>
+
+                                        {% endif  %}
+                                  </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-         <script>
-
-          $(function() {
-            $("#query").autocomplete({
-              source: "/search_auto/",
-              select: function (event, ui) { //item selected
-                AutoCompleteSelectHandler(event, ui)
-              },
-              minLength: 2,
-            });
-          });
-
-          function AutoCompleteSelectHandler(event, ui)
-          {
-            var selectedObj = ui.item;
-          }
-
-        </script>
 
             <div id="sticky-header" class="main-header-area">
 
@@ -53,6 +50,7 @@
                                         </a>
                                     </div>
                                 </div>
+
                                 <div class="header_right d-flex align-items-center">
                                     <div class="main-menu  d-none d-lg-block">
                                         <nav>
@@ -65,42 +63,15 @@
                                                         <li><a href="single-blog.html">single-blog</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="/iletisim">iletisim </a>
+                                                    <li><a href="/iletisim">iletisim </a>
 
-                                                </li>
+                                                    </li>
                                                 <li><a href="/referanslar">referanslar</a></li>
                                             </ul>
                                         </nav>
                                     </div>
                                     <div class="Appointment">
 
-                                  <!-- Search -->
-                                <div class="header-search">
-                                    <form action="/search/" method="post">
-                                        {% csrf_token %}
-                                        <input class="input search-input" id="query" name="query" type="text" placeholder="Aradığınız Bloğu giriniz">
-
-                                        {% load mptt_tags %}
-
-                                        <select name="catid" class="input search-categories">
-                                            <option value="0">Tüm Kategoriler</option>
-                                            {% recursetree category %}
-
-                                                {% if node.is_leaf_node %}
-                                                    <option value="{{ node.id}}"> {{ node.title}} </option>
-                                                {% endif %}
-                                                {% if not node.is_leaf_node %}
-                                                      <optgroup label="{{ node.title }}">
-                                                        {{ children }}
-                                                      </optgroup>
-                                                 {% endif %}
-                                            {% endrecursetree %}
-                                        </select>
-
-                                        <button class="search-btn"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </div>
-					            <!-- /Search -->
                               </div>
                            </div>
                         </div>
