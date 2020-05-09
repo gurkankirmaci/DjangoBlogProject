@@ -14,6 +14,8 @@ from product.models import Images,Comment
 
 from home.forms import SearchForm
 
+from home.forms import SignUpForm
+
 
 def index(request):
     setting = Setting.objects.get(pk=1)
@@ -50,9 +52,9 @@ def iletisim(request):
         form = ContactFormu(request.POST)
         if form.is_valid():
             data=ContactFormMessage() #model ile baglanti kur
-            data.name = form.cleaned_data['name'] #formdan bilgi al
-            data.email = form.cleaned_data['email']
-            data.subject = form.cleaned_data['subject']
+            data.name =form.cleaned_data['name'] #formdan bilgi al
+            data.email =form.cleaned_data['email']
+            data.subject =form.cleaned_data['subject']
             data.messages= form.cleaned_data['message']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save() #veritabanına kaydet
@@ -143,3 +145,21 @@ def login_view(request):
     context = {'category': category,
                }
     return render(request, 'login.html', context)
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username,password=password)
+            login(request,user)
+            return HttpResponseRedirect('/')
+
+    form = SignUpForm()
+    category = Category.objects.all()
+    context = {'category': category,
+               'form': form,
+                   }
+    return render(request, 'signup.html', context)
