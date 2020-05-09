@@ -1,0 +1,52 @@
+{% extends "homebase.html" %}
+
+{% block title %} Login {{ setting.company }}  {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+{% block content %}
+
+<div class="section" style="padding:50px">
+
+    <div class="container">
+
+        <div class="row">
+
+                <div class ="col-md-12">
+                        <div class="billing-details">
+
+                            <div class="section-title">
+                                <h3 class="title">Login</h3>
+                            </div>
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags}}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <form action=""  method="post">
+                                    {% csrf_token %}
+                            <div class="form-group">
+								<input class="input" type="text" name="username" placeholder="user name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="password" name="password" placeholder="password">
+							</div>
+                                <input type="submit" value="login">
+                            </form>
+
+                        </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
