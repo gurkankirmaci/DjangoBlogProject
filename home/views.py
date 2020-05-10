@@ -45,7 +45,6 @@ def referanslar(request):
     return render(request, 'referanslar.html', context)
 
 
-
 def iletisim(request):
 
     if request.method == 'POST':
@@ -64,7 +63,7 @@ def iletisim(request):
     setting= Setting.objects.get(pk=1)
     form= ContactFormu()
     context={'setting':setting,'form':form}
-    return render(request, "iletisim.html",context)
+    return render(request,'iletisim.html',context)
 
 def category_products(request,id,slug):
     category = Category.objects.all()
@@ -85,8 +84,15 @@ def product_detail(request,id,slug):
                'images': images,
                'comments': comments,
                }
-
     return render(request,'product_detail.html',context)
+
+def content_detail(request,id,slug):
+    category = Category.objects.all()
+    product = Product.objects.filter(category_id=id)
+    link ='/product/'+str(product[0].id)+'/'+product[0].slug
+    #return HttpResponse(link)
+    return HttpResponseRedirect (link)
+
 
 def product_search(request):
     if request.method == 'POST': #form post edildiyse
