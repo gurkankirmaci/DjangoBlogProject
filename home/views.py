@@ -1,3 +1,5 @@
+from unicodedata import category
+
 from django.contrib.auth import logout, authenticate, login
 from django.http import  HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -36,12 +38,12 @@ def index(request):
 
 def hakkimizda(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting,'page': 'hakkimizda' }
+    context = {'setting': setting,'page': 'hakkimizda','category': category, }
     return render(request, 'hakkimizda.html', context)
 
 def referanslar(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting,'page': 'referanslar' }
+    context = {'setting': setting,'page': 'referanslar','category': category, }
     return render(request, 'referanslar.html', context)
 
 
@@ -54,7 +56,7 @@ def iletisim(request):
             data.name =form.cleaned_data['name'] #formdan bilgi al
             data.email =form.cleaned_data['email']
             data.subject =form.cleaned_data['subject']
-            data.messages= form.cleaned_data['message']
+            data.message = form.cleaned_data['message']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save() #veritabanına kaydet
             messages.success(request, "Mesajınız başarı ile gönderilmiştir,Teşekkür ederiz")
@@ -62,7 +64,7 @@ def iletisim(request):
 
     setting= Setting.objects.get(pk=1)
     form= ContactFormu()
-    context={'setting':setting,'form':form}
+    context={'setting':setting,'form':form,'category': category}
     return render(request,'iletisim.html',context)
 
 def category_products(request,id,slug):

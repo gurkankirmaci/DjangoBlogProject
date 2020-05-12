@@ -1,55 +1,56 @@
  {% load static %}
 
-     <!-- Search -->
-                                 <script>
-
-                                  $(function() {
-                                    $("#query").autocomplete({
-                                      source: "/search_auto/",
-                                      select: function (event, ui) { //item selected
-                                        AutoCompleteSelectHandler(event, ui)
-                                      },
-                                      minLength: 2,
-                                    });
-                                  });
-
-                                  function AutoCompleteSelectHandler(event, ui)
-                                  {
-                                    var selectedObj = ui.item;
-                                  }
-
-                                </script>
-
-                           <div class="col-lg-3" style="float:right"  >
-                             <div class="blog_right_sidebar">
-                                <div class="header-search" style="">
-                                    <form action="/search/" method="post">
-                                        {% csrf_token %}
-                                        <input class="input search-input" id="query" name="query" type="text" placeholder="Aradığınız Bloğu giriniz">
-
-                                        {% load mptt_tags %}
-
-                                        <select name="catid" class="input search-categories">
-                                            <option value="0">Tüm Kategoriler</option>
-                                            {% recursetree category %}
-
-                                                {% if node.is_leaf_node %}
-                                                    <option value="{{ node.id}}"> {{ node.title}} </option>
-                                                {% endif %}
-                                                {% if not node.is_leaf_node %}
-                                                      <optgroup label="{{ node.title }}">
-                                                        {{ children }}
-                                                      </optgroup>
-                                                 {% endif %}
-                                            {% endrecursetree %}
-                                        </select>
-
-                                        <button class="search-btn"><i class="fa fa-search"></i></button>
-                                    </form>
+   <!-- latest_coures_area_start  -->
+    <div data-scroll-index='1' class="admission_area">
+        <div class="admission_inner">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-lg-7">
+                        <div class="admission_form">
+                            <h3>Blog Ekleme</h3>
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="single_input">
+                                            <input type="text" placeholder="First Name" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single_input">
+                                            <input type="text" placeholder="Last Name" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single_input">
+                                            <input type="text" placeholder="Phone Number" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single_input">
+                                            <input type="text" placeholder="Email Address" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="single_input">
+                                            <textarea cols="30" placeholder="Write an Application" rows="10"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="apply_btn">
+                                            <button class="boxed-btn3" type="submit">Apply Now</button>
+                                        </div>
+                                    </div>
                                 </div>
-					          </div>
-                           </div>
-                        <!-- /Search -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ latest_coures_area_end -->
+
+
 
  <!-- popular_program_area_start  -->
     <div class="popular_program_area section__padding">
@@ -125,6 +126,9 @@
         </div>
     </div>
     <!-- popular_program_area_end -->
+
+
+
 
  <!-- latest_coures_area_start  -->
     <div class="latest_coures_area">
@@ -208,3 +212,4 @@
     </div>
 
     <!-- recent_news_area_end  -->
+

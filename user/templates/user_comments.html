@@ -1,0 +1,73 @@
+{% extends "homebase.html" %}
+
+{% block title %} User Profile {{ profile.username }}  {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="section" style="padding:50px">
+
+    <div class="container">
+
+        <div class="row">
+
+                <div class ="col-md-2">
+                    {% include "user_panel.html"  %}
+                </div>
+
+                <div class="col-md-10">
+                     <div class="section-title">
+                        <h3 class="title">user Comment list</h3>
+                     </div>
+                                     {% if messages %}
+                                        {% for messages in messages  %}
+                                            <div style="color:green; font-size: medium">
+                                                {{messages|safe}}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                   <table class="shopping-cart-table table">
+								<thead>
+                                    <tr>
+
+                                        <th class="text-left">Product</th>
+                                        <th class="text-left">Rate</th>
+                                        <th class="text-left">Subject</th>
+                                        <th class="text-left">Comment</th>
+                                        <th class="text-left">Status</th>
+                                        <th class="text-left">Date</th>
+                                        <th class="text-left">Detail</th>
+                                    </tr>
+                                    {% for rs in comments %}
+                                    <tr>
+
+                                         <td class="text-left">
+                                             <a href="/product/{{ rs.product_id}}/{{rs.product.slug}}">
+                                             <b> {{ rs.product.title }} </b> </a>
+                                         </td>
+                                         <td class="text-left">{{ rs.rate }}</td>
+                                         <td class="text-left">{{ rs.subject }}</td>
+                                         <td class="text-left">{{ rs.comment }}</td>
+                                         <td class="text-left">{{ rs.status }}</td>
+                                         <td class="text-left">{{ rs.create_at }}</td>
+                                         <td class="text-left"><a class="primary-btn" href="/user/deletecomment/{{ rs.id}} " onclick="return confirm('Will be delete ! Are you sure ?')">Delete</td>
+
+                                    {% endfor %}
+                                    </tr>
+
+								</thead>
+
+                   </table>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

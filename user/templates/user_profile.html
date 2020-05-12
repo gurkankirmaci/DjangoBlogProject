@@ -29,6 +29,13 @@
 
                    <table class="shopping-cart-table table">
 								<thead>
+                                    {% if messages %}
+                                        {% for messages in messages  %}
+                                            <div style="color: #green; font-size: medium">
+                                                {{messages|safe}}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
                                     <tr>
                                     <th class="text-left">
                                         <a href="/user/update" class="primary-btn btn">Update Profile</a>
