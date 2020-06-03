@@ -8,7 +8,7 @@ import json
 
 
 # Create your views here.
-from home.models import Setting, ContactFormu, ContactFormMessage
+from home.models import Setting, ContactFormu, ContactFormMessage, UserProfile
 
 from product.models import Product,Category
 
@@ -17,19 +17,26 @@ from product.models import Images,Comment
 from home.forms import SearchForm
 
 from home.forms import SignUpForm
-
+from content.models import Menu,Content,CImages
 
 def index(request):
+    #current_user =request.user
     setting = Setting.objects.get(pk=1)
     sliderdata= Product.objects.all()[:4]
     category= Category.objects.all()
+    menu = Menu.objects.all()
     dayproducts = Product.objects.all()[:3]
     lastproducts = Product.objects.all().order_by('-id')[:2]
     randomproducts=Product.objects.all().order_by('?')[:2]
+    news= Content.objects.filter(type='haber').order_by('-id')[:4]
+    announcements = Content.objects.filter(type='duyuru').order_by('-id')[:4]
     context = {'setting': setting,
                'category': category,
+               'menu': menu,
                'page': 'home',
-               'sliderdata':sliderdata,
+               'news':news,
+               'announcements': announcements,
+               'sliderdata': sliderdata,
                'dayproducts': dayproducts,
                'lastproducts': lastproducts,
                'randomproducts': randomproducts,
@@ -78,16 +85,20 @@ def category_products(request,id,slug):
 
 def product_detail(request,id,slug):
     category = Category.objects.all()
-    product = Product.objects.get(pk=id)
-    images  = Images.objects.filter(product_id=id)
-    comments = Comment.objects.filter(product_id=id,status='True') #yorumları sayfada gösterme
-    context = {'product': product,
-               'category':category,
-               'images': images,
-               'comments': comments,
-               }
-    return render(request,'product_detail.html',context)
-
+    try:
+        product = Product.objects.get(pk=id)
+        images  = Images.objects.filter(product_id=id)
+        comments = Comment.objects.filter(product_id=id,status='True') #yorumları sayfada gösterme
+        context = {'product': product,
+                   'category':category,
+                   'images': images,
+                   'comments': comments,
+                   }
+        return render(request,'product_detail.html',context)
+    except:
+        messages.warning(request, "Hata ! İlgili içerik bulunamadı ")
+        link = '/error'
+        return HttpResponseRedirect(link)
 def content_detail(request,id,slug):
     category = Category.objects.all()
     product = Product.objects.filter(category_id=id)
@@ -171,3 +182,42 @@ def signup_view(request):
                'form': form,
                    }
     return render(request, 'signup.html', context)
+
+def menu(request,id):
+    try:
+        content = Content.objects.get(menu_id = id)
+        link='/content/'+str(content.id)+'/menu'
+        return HttpResponseRedirect(link)
+    except:
+        messages.warning(request, "Hata ! İlgili içerik bulunamadı ")
+        link = '/error'
+        return HttpResponseRedirect(link)
+
+
+def contentdetail(request,id,slug):
+    category = Category.objects.all()
+    menu = Menu.objects.all()
+    try:
+        content = Content.objects.get(pk=id)
+        images = CImages.objects.filter(content_id=id)
+        # return HttpResponse(link)
+        context = {'content': content,
+                   'category': category,
+                   'menu': menu,
+                   'images': images,
+               }
+        return render(request,'content_detail.html',context)
+    except:
+        messages.warning(request, "Hata ! İlgili içerik bulunamadı ")
+        link = '/error'
+        return HttpResponseRedirect(link)
+
+def error(request):
+    category = Category.objects.all()
+    menu = Menu.objects.all()
+
+    context = {
+               'category': category,
+               'menu': menu,
+              }
+    return render(request,'error_page.html',context)

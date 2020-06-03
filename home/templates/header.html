@@ -1,144 +1,144 @@
- {% load static %}
+{% load static %}
 
 <!-- header-start -->
-    <header>
-        <div class="header-area ">
-            <div class="header-top_area">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="header_top_wrap d-flex justify-content-between align-items-center">
-                                <div class="text_wrap">
-                                    <p><span>Sorularınız için...</span> <span>info@domain.com</span></p>
+<header>
+    <div class="header-area ">
+        <div class="header-top_area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header_top_wrap d-flex justify-content-between align-items-center">
+                            <div class="text_wrap">
+                                <p><span>Sorularınız için...</span> <span>info@domain.com</span></p>
+                            </div>
+
+                            <div class="text_wrap">
+                                {% if user.id is not None  %}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{user.first_name}}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="/user">My Account</a>
+                                        <a href="/logout/" style="padding: 10px"><i class="fa fa-times-circle"></i>logout</a>
+                                    </div>
                                 </div>
 
-                                   <div class="text_wrap">
-                                          {% if user.id is not None  %}
-                                                <div class="dropdown">
-                                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        {{user.first_name}}
-                                                      </button>
-                                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="/user">My Account</a>
-                                                        <a href="/logout/" style="padding: 10px"><i class="fa fa-times-circle"></i>logout</a>
-                                                      </div>
-                                                </div>
+                                {% else %}
 
-                                          {% else %}
+                                <p><a href="/signup/" style="padding:5px"><i class="fa fa-key"></i>Signup</a>
+                                    <a href="/login/"><i class="ti-user"></i>Login</a></p>
 
-                                                 <p><a href="/signup/" style="padding:5px"><i class="fa fa-key"></i>Signup</a>
-                                                  <a href="/login/"><i class="ti-user"></i>Login</a></p>
-
-                                        {% endif  %}
-                                  </div>
+                                {% endif  %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div id="sticky-header" class="main-header-area">
+        <div id="sticky-header" class="main-header-area">
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="header_wrap d-flex justify-content-between align-items-center" style="padding: 0px 0px 0px 120px">
-                                <div class="header_left">
-                                    <div class="logo">
-                                        <a href="index.html">
-                                            <img src=" {% static 'img/logo.ico' %} " alt="">
-                                        </a>
-                                    </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header_wrap d-flex justify-content-between align-items-center" style="padding: 0px 0px 0px 120px">
+                            <div class="header_left">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src=" {% static 'img/logo.ico' %} " alt="">
+                                    </a>
                                 </div>
+                            </div>
 
-                                <div class="header_right d-flex align-items-center">
-                                    <div class="main-menu  d-none d-lg-block">
-                                        <nav>
-                                            {% load mptt_tags %}
-                                            <ul id="navigation">
-                                                <li><a  href="/">Anasayfa</a></li>
-                                                <li><a href="/hakkimizda">Hakkımızda</a></li>
-                                                {% recursetree category %}
+                            <div class="header_right d-flex align-items-center">
+                                <div class="main-menu  d-none d-lg-block">
+                                    <nav>
+                                        {% load mptt_tags %}
+                                        <ul id="navigation">
+                                            <li><a  href="/">Anasayfa</a></li>
+                                            <li><a href="/hakkimizda">Hakkımızda</a></li>
+                                            {% if menu %}
+                                            {% recursetree menu %}
 
-                                                <li><a href="/content/{{ node.id }}/{{node.slug}}"> {{ node.title }} <i class="ti-angle-down"></i></a>
+                                            <li><a href="/menu/{{ node.id }}"> {{ node.title }} <i class="ti-angle-down"></i></a>
 
-                                                 {% if not node.is_leaf_node %}
-                                                    <ul class="submenu">
-                                                        <li><a href="">{{children}}</a></li>
+                                                {% if not node.is_leaf_node %}
+                                                <ul class="submenu">
+                                                    <li><a href="">{{children}}</a></li>
 
-                                                    </ul>
-                                                 {% endif %}
-                                                </li>
-                                                {% endrecursetree %}
-                                                    <li><a href="/iletisim">iletisim </a></li>
-                                                <li><a href="/referanslar">referanslar</a></li>
+                                                </ul>
+                                                {% endif %}
+                                            </li>
+                                            {% endrecursetree %}
+                                            {% endif %}
 
-                                            </ul>
-                                        </nav>
-                                    </div>
+                                            <li><a href="/iletisim">iletisim </a></li>
+                                            <li><a href="/referanslar">referanslar</a></li>
 
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Search -->
+                                <script>
 
-                                 <!-- Search -->
-                                 <script>
-
-                                  $(function() {
-                                    $("#query").autocomplete({
-                                      source: "/search_auto/",
-                                      select: function (event, ui) { //item selected
-                                        AutoCompleteSelectHandler(event, ui)
-                                      },
-                                      minLength: 2,
+                                    $(function() {
+                                        $("#query").autocomplete({
+                                            source: "/search_auto/",
+                                            select: function (event, ui) { //item selected
+                                                AutoCompleteSelectHandler(event, ui)
+                                            },
+                                            minLength: 2,
+                                        });
                                     });
-                                  });
 
-                                  function AutoCompleteSelectHandler(event, ui)
-                                  {
-                                    var selectedObj = ui.item;
-                                  }
+                                    function AutoCompleteSelectHandler(event, ui)
+                                    {
+                                        var selectedObj = ui.item;
+                                    }
 
                                 </script>
+                                <div class="col-lg-3" style="float:right"  >
+                                    <div class="blog_right_sidebar">
+                                        <div class="header-search" style="">
+                                            <form action="/search/" method="post">
+                                                {% csrf_token %}
+                                                <input class="input search-input" id="query" name="query" type="text" placeholder="Aradığınız Bloğu giriniz">
 
-                           <div class="col-lg-3" style="float:right"  >
-                             <div class="blog_right_sidebar">
-                                <div class="header-search" style="">
-                                    <form action="/search/" method="post">
-                                        {% csrf_token %}
-                                        <input class="input search-input" id="query" name="query" type="text" placeholder="Aradığınız Bloğu giriniz">
+                                                {% load mptt_tags %}
 
-                                        {% load mptt_tags %}
+                                                <select name="catid" class="input search-categories">
+                                                    <option value="0">Tüm Kategoriler</option>
+                                                    {% recursetree category %}
 
-                                        <select name="catid" class="input search-categories">
-                                            <option value="0">Tüm Kategoriler</option>
-                                            {% recursetree category %}
-
-                                                {% if node.is_leaf_node %}
+                                                    {% if node.is_leaf_node %}
                                                     <option value="{{ node.id}}"> {{ node.title}} </option>
-                                                {% endif %}
-                                                {% if not node.is_leaf_node %}
-                                                      <optgroup label="{{ node.title }}">
+                                                    {% endif %}
+                                                    {% if not node.is_leaf_node %}
+                                                    <optgroup label="{{ node.title }}">
                                                         {{ children }}
-                                                      </optgroup>
-                                                 {% endif %}
-                                            {% endrecursetree %}
-                                        </select>
+                                                    </optgroup>
+                                                    {% endif %}
+                                                    {% endrecursetree %}
+                                                </select>
 
-                                        <button class="search-btn"><i class="fa fa-search"></i></button>
-                                    </form>
+                                                <button class="search-btn"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-					          </div>
-                           </div>
-                        <!-- /Search -->
-                           </div>
+                                <!-- /Search -->
+                            </div>
                         </div>
-                      </div>
+                    </div>
                     <div class="col-12">
-                 <div class="mobile_menu d-block d-lg-none"></div>
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- header-end -->
+<!-- header-end -->
 
