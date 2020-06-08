@@ -69,3 +69,4 @@ admin.site.register(Product,ProductAdmin)
 admin.site.register(Images,ImagesAdmin)
 admin.site.register(Comment,CommentAdmin)
 
+

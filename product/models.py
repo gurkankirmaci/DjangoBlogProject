@@ -1,7 +1,8 @@
+from ckeditor.widgets import CKEditorWidget
 from django.db import models
-
+from lib2to3.fixes.fix_idioms import TYPE
 # Create your models here.
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput, Select, FileInput, NumberInput
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -50,7 +51,7 @@ class Product(models.Model):
         ('True', 'Evet'),
         ('False', 'Hayır')
     )
-
+    user = models.ForeignKey(User ,on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE) #relation with category table
     title = models.CharField(max_length=150)
     keywords = models.CharField(blank=True,max_length=255)
@@ -112,3 +113,19 @@ class CommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ['subject','comment','rate' ]
+
+class ContentForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ['category','title','slug','keywords','description','image','detail','amount' ]
+        widgets ={
+            'title'    :TextInput(attrs={'class' : 'input','placeholder':'title' }),
+            'slug'     :TextInput(attrs={'class' : 'input','placeholder':'slug' }),
+            'keywords' :TextInput(attrs={'class' : 'input','placeholder':'keywords' }),
+            'description':TextInput(attrs={'class' : 'input','placeholder':'description' }),
+            'category': Select(attrs={'class': 'input', 'placeholder': 'city'}, choices=Category.objects.all()),
+            'image'      : FileInput(attrs={'class' : 'input' , 'placeholder': 'image',}),
+            'detail'    :CKEditorWidget(), #ckeditor input
+            'amount': NumberInput(attrs={'class':'input', 'placeholder': 'number'})
+
+        }

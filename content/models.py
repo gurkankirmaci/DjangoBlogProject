@@ -1,11 +1,19 @@
+from lib2to3.fixes.fix_idioms import TYPE
+
+from ckeditor.widgets import CKEditorWidget
+from django.contrib.auth.models import User
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
+from django.forms import ModelForm, TextInput, Select, FileInput, NumberInput
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
+
+from product.models import Category,Product
+
 
 class Menu(MPTTModel):
     STATUS= (
@@ -42,7 +50,7 @@ class Content(models.Model):
         ('True', 'Evet'),
         ('False', 'Hayır')
     )
-
+    user = models.ForeignKey(User ,on_delete=models.SET_NULL, null=True)
     menu = models.OneToOneField(Menu,null=True, blank=True, on_delete=models.CASCADE) #relation with Menu table
     type = models.CharField(max_length=10 , choices=TYPE)
     title = models.CharField(max_length=20)
@@ -65,6 +73,21 @@ class Content(models.Model):
     def get_absolute_url(self):
         return reverse ('content_detail', kwargs= {'slug': self.slug} )
 
+class ContentForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ['category','title','slug','keywords','description','image','detail','amount' ]
+        widgets ={
+            'title'    :TextInput(attrs={'class' : 'input','placeholder':'title' }),
+            'slug'     :TextInput(attrs={'class' : 'input','placeholder':'slug' }),
+            'keywords' :TextInput(attrs={'class' : 'input','placeholder':'keywords' }),
+            'description':TextInput(attrs={'class' : 'input','placeholder':'description' }),
+            'category': Select(attrs={'class': 'input', 'placeholder': 'city'}, choices=Category.objects.all()),
+            'image'      : FileInput(attrs={'class' : 'input' , 'placeholder': 'image',}),
+            'detail'    :CKEditorWidget(), #ckeditor input
+            'amount': NumberInput(attrs={'class':'input', 'placeholder': 'number'})
+        }
+
 class CImages(models.Model):
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
     title = models.CharField(max_length=50,blank=True)
@@ -75,3 +98,4 @@ class CImages(models.Model):
     def image_tag(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
+

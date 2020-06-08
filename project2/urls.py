@@ -40,6 +40,7 @@ urlpatterns = [
     path('content/<int:id>/<slug:slug>/', views.contentdetail, name ='contentdetail'),
     path('menu/<int:id>', views.menu, name ='menu'),
 
+
     path('search/', views.product_search, name='product_search'),
     path('search_auto/', views.product_search_auto, name='product_search_auto'),
     path('logout/', views.logout_view, name='logout_view'),

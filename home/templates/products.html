@@ -41,9 +41,9 @@
                                 <article class="blog_item">
                                     <div class="blog_item_img">
                                         <img class="card-img rounded-0" src="{{ rs.image.url }}" alt="">
-                                        <a href="#" class="blog_item_date">
-                                            <h3>15</h3>
-                                            <p>Jan</p>
+                                        <a href="#" class="blog_item_date" style="background-color: whitesmoke">
+                                            <h9 >Yüklenme tarihi:</h9>
+                                            <h9>{{rs.update_at}}</h9>
                                         </a>
                                     </div>
 
@@ -54,8 +54,8 @@
                                         </a>
                                         <p> {{ rs.detail|safe }} </p>
                                         <ul class="blog-info-link">
-                                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                            <li><i class="fa fa-user"></i> {{ user.first_name }}</li>
+
                                         </ul>
                                     </div>
                                      {% endfor %}

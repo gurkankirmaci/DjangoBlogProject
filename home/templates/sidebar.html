@@ -1,49 +1,53 @@
 {% load static %}
-
+<h2 class="title" style="padding-left: 80px;color:darkorange">Bloglar  </h2>
 <div class="container">
-    <div class="row"
-    <nav>
-    <div class="col-md-8" style="border-style: dashed;border-color:darkorange">
-        {% load mptt_tags %}
-        <ul class="mcd-menu">
-            {% recursetree category %}
-            <li>
-                <a href="/category/{{ node.id }}/{{node.slug}} ">
-                    <i class="fa fa-trophy"></i>
-                    <strong> {{ node.title }}</strong>
-                </a>
-                {% if not node.is_leaf_node %}
-                <ul class="children">
-                    <li> <a href="/category/{{ node.id }}/{{node.slug}} ">{{ children }}</a></li>
-                </ul>
-                {% endif %}
-            </li>
-            {% endrecursetree %}
-        </ul>
-    </div>
-    </nav>
+    <div class="row">
 
-
-    <div class="col-md-2">
-        <div class="section-title">
-            <h3 class="title" style="color:whitesmoke ;background-color:  #1da1f2 " >Haberler</h3>
+        <div class="col-md-6" style="border-style: dashed;border-color:darkorange">
+            {% load mptt_tags %}
+            <ul class="mcd-menu">
+                {% recursetree category %}
+                <li>
+                    <a href="/category/{{ node.id }}/{{node.slug}} ">
+                        <i class="fa fa-trophy"></i>
+                        <strong> {{ node.title }}</strong>
+                    </a>
+                    {% if not node.is_leaf_node %}
+                    <ul class="children">
+                        <li> <a href="/category/{{ node.id }}/{{node.slug}} ">{{ children }}</a></li>
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endrecursetree %}
+            </ul>
         </div>
-        <ul class="list-link" style="background-color: lightgreen" >
-            {% for rs in news %}
-            <li><a href="/content/{{rs.id}}/{{rs.slug}}">{{rs.title}}</a> </li>
-            {% endfor %}
-        </ul>
-    </div>
 
-    <div class="col-md-2" style="float: right " >
-        <div class="section-title" >
-            <h3 class="title" style="color:whitesmoke ;background-color:goldenrod" >Duyurular</h3>
+
+
+        <div class="col-md-3">
+            <div class="section-title">
+                <h3 class="title" style="color:whitesmoke ;background-color:  #1da1f2 " >Haberler</h3>
+            </div>
+            <ul class="list-link" style="background-color: lightgreen" >
+                {% for rs in news %}
+                <li><a href="/content/{{rs.id}}/{{rs.slug}}">{{rs.title}}</a> </li>
+                {% endfor %}
+            </ul>
         </div>
-        <ul class="list-link" style="background-color:#bee5eb">
-            {% for rs in announcements %}
-            <li><a href="/content/{{rs.id}}/{{rs.slug}}">{{rs.title}}</a> </li>
-            {% endfor %}
-        </ul>
+
+
+        <div class="col-md-3" style="float: right " >
+            <div class="section-title" >
+                <h3 class="title" style="color:whitesmoke ;background-color:goldenrod" >Duyurular</h3>
+            </div>
+            <ul class="list-link" style="background-color:#bee5eb">
+                {% for rs in announcements %}
+                <li><a href="/content/{{rs.id}}/{{rs.slug}}">{{rs.title}}</a> </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+
     </div>
-</div>
 </div>

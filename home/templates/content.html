@@ -1,6 +1,7 @@
 {% load static %}
 
 
+
 <!-- popular_program_area_start  -->
 <div class="popular_program_area section__padding">
     <div class="container">
@@ -23,7 +24,7 @@
                             <div class="program__content">
 
                                 <h4>{{rs.title}}</h4>
-                                <p>{{rs.detail|safe}}</p>
+
                                 <a href="/product/{{rs.id}}/{{rs.slug}}" class="boxed-btn5"> Bloga git</a>
                             </div>
                         </div>
@@ -44,7 +45,7 @@
                             </div>
                             <div class="program__content">
                                 <h4>{{rs.title}}</h4>
-                                <p>{{rs.detail|safe}}</p>
+
                                 <a href="/product/{{rs.id}}/{{rs.slug}}" class="boxed-btn5">Bloga git</a>
                             </div>
                         </div>
@@ -80,7 +81,7 @@
                             <div class="single_wrap">
                                 {% for rs in lastproducts %}
                                 <h4>{{rs.title}}</h4>
-                                <p>{{rs.detail|safe}}</p>
+
                                 <a href="/product/{{ rs.id }}/{{rs.slug}}" class="boxed-btn2">Bloga git</a>
                                 {% endfor %}
                             </div>

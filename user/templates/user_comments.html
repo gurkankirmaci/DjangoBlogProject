@@ -57,7 +57,7 @@
                                          <td class="text-left">{{ rs.comment }}</td>
                                          <td class="text-left">{{ rs.status }}</td>
                                          <td class="text-left">{{ rs.create_at }}</td>
-                                         <td class="text-left"><a class="primary-btn" href="/user/deletecomment/{{ rs.id}} " onclick="return confirm('Will be delete ! Are you sure ?')">Delete</td>
+                                         <td class="text-left"><a class="genric-btn danger radius" href="/user/deletecomment/{{ rs.id}} " onclick="return confirm('Will be delete ! Are you sure ?')">Delete</td>
 
                                     {% endfor %}
                                     </tr>

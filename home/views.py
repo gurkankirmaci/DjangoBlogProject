@@ -20,7 +20,7 @@ from home.forms import SignUpForm
 from content.models import Menu,Content,CImages
 
 def index(request):
-    #current_user =request.user
+    current_user =request.user
     setting = Setting.objects.get(pk=1)
     sliderdata= Product.objects.all()[:4]
     category= Category.objects.all()
@@ -28,8 +28,11 @@ def index(request):
     dayproducts = Product.objects.all()[:3]
     lastproducts = Product.objects.all().order_by('-id')[:2]
     randomproducts=Product.objects.all().order_by('?')[:2]
-    news= Content.objects.filter(type='haber').order_by('-id')[:4]
-    announcements = Content.objects.filter(type='duyuru').order_by('-id')[:4]
+    product = Content.objects.filter(type='product', status=True)
+    news= Content.objects.filter(type='haber',status =True).order_by('-id')[:4]
+    announcements = Content.objects.filter(type='duyuru',status =True).order_by('-id')[:4]
+
+
     context = {'setting': setting,
                'category': category,
                'menu': menu,
@@ -99,6 +102,7 @@ def product_detail(request,id,slug):
         messages.warning(request, "Hata ! İlgili içerik bulunamadı ")
         link = '/error'
         return HttpResponseRedirect(link)
+
 def content_detail(request,id,slug):
     category = Category.objects.all()
     product = Product.objects.filter(category_id=id)
@@ -197,6 +201,7 @@ def menu(request,id):
 def contentdetail(request,id,slug):
     category = Category.objects.all()
     menu = Menu.objects.all()
+
     try:
         content = Content.objects.get(pk=id)
         images = CImages.objects.filter(content_id=id)
@@ -221,3 +226,5 @@ def error(request):
                'menu': menu,
               }
     return render(request,'error_page.html',context)
+
+
