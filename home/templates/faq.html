@@ -1,0 +1,48 @@
+{% extends "homebase.html" %}
+
+{% block title %} Sıkça Sorulan Sorular {% endblock %}
+{% block keywords %}  {% endblock %}
+{% block description %} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+<script>
+    $( function() {
+        $( "#accordion" ).accordion({
+            collapsible: true
+        });
+    } );
+</script>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="section" style="padding:50px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <div  id="accordion">
+                {% for rs in faq %}
+                <!-- FAQ  -->
+                <h3>{{ rs.question}}</h3>
+                <div>
+                    <p>{{ rs.answer }}</p>
+                </div>
+                <!-- End FAQ --->
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

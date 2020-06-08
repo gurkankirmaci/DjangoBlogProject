@@ -45,8 +45,8 @@ class Category(MPTTModel):
     def get_absolute_url(self):
         return reverse ('category_detail', kwargs= {'slug': self.slug} )
 
-
 class Product(models.Model):
+
     STATUS = (
         ('True', 'Evet'),
         ('False', 'Hayır')

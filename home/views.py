@@ -19,6 +19,9 @@ from home.forms import SearchForm
 from home.forms import SignUpForm
 from content.models import Menu,Content,CImages
 
+from home.models import FAQ
+
+
 def index(request):
     current_user =request.user
     setting = Setting.objects.get(pk=1)
@@ -228,3 +231,13 @@ def error(request):
     return render(request,'error_page.html',context)
 
 
+def faq(request):
+    menu = Menu.objects.all()
+    category = Category.objects.all()
+    faq = FAQ.objects.all().order_by('ordernumber')
+    context = {
+        'category': category,
+        'menu': menu,
+        'faq' : faq,
+    }
+    return render(request, 'faq.html', context)
