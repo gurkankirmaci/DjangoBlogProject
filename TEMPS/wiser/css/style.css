@@ -3373,7 +3373,7 @@ h3 {
 /* line 8, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_course.scss */
 .latest_coures_area::before {
   position: absolute;
-  background-image: url(../img/causes/1.png);
+  background-image: url(../img/causes/4.png);
   left: 0;
   content: '';
   width: 60%;
@@ -3415,7 +3415,7 @@ h3 {
   top: 0;
   bottom: 0;
   z-index: -1;
-  background-color: rgba(23, 47, 72, 0.871);
+  background-color: rgba(0, 47, 72, 0.871);
 }
 
 @media (max-width: 767px) {

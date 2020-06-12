@@ -74,7 +74,8 @@ button {
 /* line 39, ../../Arafath/CL/january 2020/243.Education/HTML/scss/theme-default.scss */
 h1, h2, h3, h4, h5 {
   font-family: "Poppins", sans-serif;
-  color: #234262;
+  color: black;
+  
 }
 
 /* line 43, ../../Arafath/CL/january 2020/243.Education/HTML/scss/theme-default.scss */
@@ -103,7 +104,7 @@ p {
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
-  color: #7d84ab;
+  color: black;
   margin-bottom: 13px;
   font-family: "Poppins", sans-serif;
 }
@@ -2687,7 +2688,7 @@ h3 {
 
 /* line 39, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_bradcam.scss */
 .section-padding {
-  padding-top: 120px;
+  padding-top: 5px;
   padding-bottom: 120px;
 }
 
@@ -3368,7 +3369,7 @@ h3 {
 /* line 8, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_course.scss */
 .latest_coures_area::before {
   position: absolute;
-  background-image: url(../img/causes/1.png);
+  background-image: url(../img/causes/4.png) !important;
   left: 0;
   content: '';
   width: 60%;
@@ -3410,7 +3411,7 @@ h3 {
   top: 0;
   bottom: 0;
   z-index: -1;
-  background-color: rgba(23, 47, 72, 0.871);
+  background-color: rgba(0, 47, 72, 0.871)!important;
 }
 
 @media (max-width: 767px) {
@@ -3444,7 +3445,7 @@ h3 {
   content: '';
   background-size: cover;
   background-position: center center;
-  background-image: url(../img/causes/2.png);
+  background-image: url(../img/banner/4.png)!important;
 }
 
 @media (max-width: 767px) {

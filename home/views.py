@@ -32,15 +32,15 @@ def index(request):
     lastproducts = Product.objects.all().order_by('-id')[:2]
     randomproducts=Product.objects.all().order_by('?')[:2]
     product = Content.objects.filter(type='product', status=True)
-    news= Content.objects.filter(type='haber',status =True).order_by('-id')[:4]
-    announcements = Content.objects.filter(type='duyuru',status =True).order_by('-id')[:4]
+    news= Content.objects.filter(type='haber',status =True).order_by('-id')[:5]
+    announcements = Content.objects.filter(type='duyuru',status =True).order_by('-id')[:5]
 
 
     context = {'setting': setting,
                'category': category,
                'menu': menu,
                'page': 'home',
-               'news':news,
+               'news': news,
                'announcements': announcements,
                'sliderdata': sliderdata,
                'dayproducts': dayproducts,
@@ -50,13 +50,22 @@ def index(request):
     return render(request, 'index.html', context)
 
 def hakkimizda(request):
+    menu = Menu.objects.all()
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting,'page': 'hakkimizda','category': category, }
+    context = {'setting': setting,
+               'page': 'hakkimizda',
+               'category': category,
+               'menu': menu,
+               }
     return render(request, 'hakkimizda.html', context)
 
 def referanslar(request):
+    menu = Menu.objects.all()
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting,'page': 'referanslar','category': category, }
+    context = {'setting': setting,
+               'page': 'referanslar',
+               'category': category,
+               'menu': menu, }
     return render(request, 'referanslar.html', context)
 
 
@@ -74,19 +83,27 @@ def iletisim(request):
             data.save() #veritabanına kaydet
             messages.success(request, "Mesajınız başarı ile gönderilmiştir,Teşekkür ederiz")
             return HttpResponseRedirect ('/iletisim')
-
+    menu = Menu.objects.all()
     setting= Setting.objects.get(pk=1)
     form= ContactFormu()
-    context={'setting':setting,'form':form,'category': category}
+    context={'setting':setting,
+             'form':form,
+             'category': category,
+             'menu': menu,
+             }
     return render(request,'iletisim.html',context)
 
 def category_products(request,id,slug):
     category = Category.objects.all()
+    menu = Menu.objects.all()
     categorydata = Category.objects.get(pk=id)
     products = Product.objects.filter(category_id=id)
-    context = {'products' : products,
+    context = {
+               'products' : products,
                'category': category,
-               'categorydata': categorydata}
+               'categorydata': categorydata,
+               'menu': menu
+               }
     return render(request,'products.html',context)
 
 def product_detail(request,id,slug):
@@ -94,11 +111,13 @@ def product_detail(request,id,slug):
     try:
         product = Product.objects.get(pk=id)
         images  = Images.objects.filter(product_id=id)
+        menu = Menu.objects.all()
         comments = Comment.objects.filter(product_id=id,status='True') #yorumları sayfada gösterme
         context = {'product': product,
                    'category':category,
                    'images': images,
                    'comments': comments,
+                   'menu': menu,
                    }
         return render(request,'product_detail.html',context)
     except:
@@ -168,7 +187,9 @@ def login_view(request):
             messages.warning(request, "Login Hatası ! Kullanıcı Adı veya Şifreniz Hatalı")
             return HttpResponseRedirect('/login')
     category = Category.objects.all()
+    menu = Menu.objects.all()
     context = {'category': category,
+               'menu': menu,
                }
     return render(request, 'login.html', context)
 
@@ -181,13 +202,22 @@ def signup_view(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username,password=password)
             login(request,user)
-            return HttpResponseRedirect('/')
+            #Create data in profile table for user
+            current_user = request.user
+            data = UserProfile()
+            data.user_id=current_user.id
+            data.image = "images/users/default.png"
+            data.save()
+            messages.success(request,"Hoş Geldiniz...Üyelik İşleminiz Başarılı,Lütfen Giriş Yapınız...")
+            return HttpResponseRedirect('/login')
 
     form = SignUpForm()
     category = Category.objects.all()
+    menu = Menu.objects.all()
     context = {'category': category,
                'form': form,
-                   }
+               'menu' : menu,
+               }
     return render(request, 'signup.html', context)
 
 def menu(request,id):

@@ -7,7 +7,7 @@
     }
     &::before{
         position: absolute;
-        background-image: url(../img/causes/1.png);
+        background-image: url(../img/causes/4.png);
         left: 0;
         content: '';
         width: 60%;
@@ -35,7 +35,7 @@
         top: 0;
         bottom: 0;
         z-index: -1;
-        background-color: rgba(23, 47, 72,0.871);
+        background-color: rgba(0, 47, 72,0.871);
         @media #{$mobile_device}{
             width: 100%;
         }
@@ -56,7 +56,7 @@
             content: '';
             background-size: cover;
             background-position: center center;
-            background-image: url(../img/causes/2.png);
+            background-image: url(../img/causes/4.png);
             @media #{$mobile_device} {
                 display: none !important ;
             }

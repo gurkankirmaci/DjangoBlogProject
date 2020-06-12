@@ -18,65 +18,65 @@
 
         <div class="row">
 
-                <div class ="col-md-3">
-                    {% include "user_panel.html"  %}
+            <div class ="col-md-3">
+                {% include "user_panel.html"  %}
+            </div>
+
+            <div class="col-md-9">
+                <div class="section-title">
+                    <h3 class="title">user information</h3>
                 </div>
 
-                <div class="col-md-9">
-                     <div class="section-title">
-                        <h3 class="title">user information</h3>
-                     </div>
+                <table class="shopping-cart-table table">
+                    <thead>
+                    {% if messages %}
+                    {% for messages in messages  %}
+                    <div style="color: green; font-size: medium">
+                        {{messages|safe}}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <tr>
+                        <th class="text-left">
+                            <a href="/user/update" class="genric-btn info radius">Update Profile</a>
+                            <a href="/user/password" class="genric-btn info radius">Change Password</a>
+                        </th>
+                    </tr>
 
-                   <table class="shopping-cart-table table">
-								<thead>
-                                    {% if messages %}
-                                        {% for messages in messages  %}
-                                            <div style="color: #green; font-size: medium">
-                                                {{messages|safe}}
-                                            </div>
-                                        {% endfor %}
-                                    {% endif %}
-                                    <tr>
-                                    <th class="text-left">
-                                        <a href="/user/update" class="genric-btn info radius">Update Profile</a>
-                                        <a href="/user/password" class="genric-btn info radius">Change Password</a>
-                                    </th>
-                                    </tr>
+                    <tr>
+                        <th class="text-left">image</th>
+                        <td><img src="{{ profile.image.url}}" alt="" style="border-radius: 20px;height: 150px"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Name</th>
+                        <td class="text-left"> {{ profile.user_name }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Email</th>
+                        <td class="text-left" style="text-transform: lowercase">{{ profile.user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Phone</th>
+                        <td class="text-left">{{ profile.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Address</th>
+                        <td class="text-left">{{ profile.address }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">City</th>
+                        <td class="text-left">{{ profile.city }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Country</th>
+                        <td class="text-left">{{ profile.country }}</td>
+                    </tr>
+                    </thead>
 
-									<tr>
-                                            <th class="text-left">image</th>
-                                        	<td><img src="{{ profile.image.url}}" alt="" style="border-radius: 20px;height: 150px"></td>
-                                    </tr>
-                                    <tr>
-										<th class="text-left">Name</th>
-                                            <td class="text-left"> {{ profile.user_name }}</td>
-                                    </tr>
-                                    <tr>
-										<th class="text-left">Email</th>
-                                           <td class="text-left" style="text-transform: lowercase">{{ profile.user.email }}</td>
-                                    </tr>
-                                    <tr>
-										<th class="text-left">Phone</th>
-                                             <td class="text-left">{{ profile.phone }}</td>
-                                    </tr>
-                                    <tr>
-										<th class="text-left">Address</th>
-                                            <td class="text-left">{{ profile.address }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-left">City</th>
-                                            <td class="text-left">{{ profile.city }}</td>
-                                    </tr>
-                                    <tr>
-										<th class="text-left">Country</th>
-                                            <td class="text-left">{{ profile.country }}</td>
-									</tr>
-								</thead>
+                </table>
 
-                   </table>
-
+            </div>
         </div>
     </div>
-</div>
 
-{% endblock %}
+    {% endblock %}

@@ -14,6 +14,8 @@ from mptt.models import MPTTModel
 
 from product.models import Category,Product
 
+from product.models import Images
+
 
 class Menu(MPTTModel):
     STATUS= (
@@ -56,7 +58,7 @@ class Content(models.Model):
     title = models.CharField(max_length=20)
     keywords = models.CharField(blank=True,max_length=255)
     description = models.CharField(blank=True,max_length=255)
-    image=models.ImageField(upload_to='images/')
+    image=models.ImageField(blank=True,upload_to='images/')
     detail=RichTextUploadingField()
     slug = models.SlugField(null=False,unique=True)
     status = models.CharField(max_length=20,choices=STATUS)
@@ -98,4 +100,5 @@ class CImages(models.Model):
     def image_tag(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
+
 

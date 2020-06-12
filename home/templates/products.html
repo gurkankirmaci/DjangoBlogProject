@@ -8,71 +8,80 @@
 <link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
 {% endblock %}
 
-
-
 {% block content %}
-<!-- bradcam_area_start  -->
-    <div class="">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text">
-                        <h3>{{ categorydata.title }}</h3>
-                    </div>
+<div class="bradcam_area breadcam_bg"  style=" padding: 170px;
+      background-size: cover;
+      background-position: center center;
+      padding: 30px 0px;
+      background-repeat: no-repeat;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8" >
+                <div class="navbar_text">
+                    <ul class="" style=" list-style: none outside none;">
+                        <li style="  position: relative;
+                                        display: inline;
+                                        margin: 2px;">Home >
+                        </li>
+                        <li style="  position: relative;
+                                        display: inline;
+                                        margin: 2px;">Product >
+                        </li>
+                        <li style="  position: relative;
+                                        display: inline;
+                                        margin: 2px;"><a href="/category/{{ product.category_id }}/{{ product.category.slug }}"> {{product.category}} >  </a>
+                        </li>
+                        <li  class="active" style="color: red  ; position: relative;
+                                        display: inline;
+                                        margin: 2px; ">{{product.title}}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-- bradcam_area_end  -->
-
-   <!--================Blog Area =================-->
- <section class="blog_area section-padding">
-   <div class="container">
-     <div class="row">
-         <div class="col-lg-8 mb-5 mb-lg-0">
-            <div class="blog_left_sidebar">
-                 <section class="blog_area section-padding">
-                     <div class="container">
-                         <div class="row">
-                             <div class="col-lg-7 mb-3 mb-lg-3">
-                                 <div class="blog_left_sidebar">
-
-                                 {% for rs in products %}
-                                <article class="blog_item">
-                                    <div class="blog_item_img">
-                                        <img class="card-img rounded-0" src="{{ rs.image.url }}" alt="">
-                                        <a href="#" class="blog_item_date" style="background-color: whitesmoke">
-                                            <h9 >Yüklenme tarihi:</h9>
-                                            <h9>{{rs.update_at}}</h9>
-                                        </a>
+</div>
+<!-- bradcam_area_end  -->
+<!--================Blog Area =================-->
+<section class="blog_area section-padding" style="padding-top: 0px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="blog_left_sidebar">
+                    <section class="blog_area section-padding">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-7 mb-1 mb-lg-3">
+                                    <div class="blog_left_sidebar">
+                                        {% for rs in products %}
+                                        <article class="blog_item">
+                                            <div class="blog_item_img">
+                                                <img class="card-img rounded-0" src="{{ rs.image.url }}" alt="">
+                                                <a href="#" class="blog_item_date" style="background-color: whitesmoke">
+                                                    <h9 >Yüklenme tarihi:</h9>
+                                                    <h9>{{rs.update_at}}</h9>
+                                                </a>
+                                            </div>
+                                            <div class="blog_details">
+                                                <a class="d-inline-block" href="/product/{{ rs.id }}/{{rs.slug}}">
+                                                    <h2>{{ rs.title }}</h2>
+                                                </a>
+                                                <p> {{ rs.description }} </p>
+                                                <ul class="blog-info-link">
+                                                    <li><i class="fa fa-user"></i> {{ user.first_name }}</li>
+                                                </ul>
+                                            </div>
+                                            {% endfor %}
+                                        </article>
                                     </div>
-
-
-                                    <div class="blog_details">
-                                        <a class="d-inline-block" href="/product/{{ rs.id }}/{{rs.slug}}">
-                                            <h2>{{ rs.title }}</h2>
-                                        </a>
-                                        <p> {{ rs.detail|safe }} </p>
-                                        <ul class="blog-info-link">
-                                            <li><i class="fa fa-user"></i> {{ user.first_name }}</li>
-
-                                        </ul>
-                                    </div>
-                                     {% endfor %}
-                                </article>
-
+                                </div>
                             </div>
                         </div>
-
-                    </div>
+                    </section>
                 </div>
-            </section>
-         </div>
-      </div>
-    <!--================Blog Area =================-->
-
-
-   </div>
-  </div>
- </section>
+            </div>
+            <!--================Blog Area =================-->
+        </div>
+    </div>
+</section>
 {% endblock %}

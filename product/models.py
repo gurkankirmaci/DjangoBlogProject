@@ -45,7 +45,10 @@ class Category(MPTTModel):
     def get_absolute_url(self):
         return reverse ('category_detail', kwargs= {'slug': self.slug} )
 
+
+
 class Product(models.Model):
+
 
     STATUS = (
         ('True', 'Evet'),
@@ -80,7 +83,7 @@ class Product(models.Model):
 class Images(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     title = models.CharField(max_length=50,blank=True)
-    image = models.ImageField(blank=True, upload_to='images/')
+    image = models.ImageField(blank=True,upload_to='images/')
     def __str__(self):
         return self.title
 
@@ -88,7 +91,10 @@ class Images(models.Model):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
 
-
+class ProductImageForm(ModelForm):
+    class Meta:
+        model = Images
+        fields = ['title','image']
 
 class Comment(models.Model):
     STATUS = (

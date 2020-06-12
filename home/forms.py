@@ -10,8 +10,8 @@ class SearchForm(forms.Form):
 class SignUpForm(UserCreationForm):
     username = forms.CharField( max_length=20, label = 'User Name:')
     email= forms.EmailField( max_length=30, label = 'Email : ')
-    first_name = forms.CharField( max_length=30, help_text='First_name',label = 'First Name : ')
-    last_name  = forms.CharField( max_length=30, help_text='Last_name',label = 'Last Name : ' )
+    first_name = forms.CharField( max_length=30,label = 'First Name :')
+    last_name  = forms.CharField( max_length=30,label = 'Last Name :' )
 
     class Meta:
         model = User

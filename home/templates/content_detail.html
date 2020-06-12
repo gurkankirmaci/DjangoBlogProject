@@ -17,14 +17,25 @@
         <div class="row">
             <img src="{{ content.image.url}}" height="300" align="left" style="padding: 10px;border-radius: 25px;border: #0b2e13 " >
             {{ content.detail|safe}}
-         <hr>
-            {% for rs in images %}
-                <img src="{{ rs.image.url }}" height="200" alt="">
-            {% endfor %}
+            <hr>
 
         </div>
 
 
+        <div class="section-top-border">
+            <h3>Image Gallery</h3>
+
+            <div class="row gallery-item">
+                {% for rs in images %}
+                <div class="col-md-4">
+
+                    <a href="{{rs.image.url}}" class="img-pop-up">
+                        <div class="single-gallery-image" style="background: url({{rs.image.url}});"></div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 
