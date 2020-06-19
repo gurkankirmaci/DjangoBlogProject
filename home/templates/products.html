@@ -21,20 +21,14 @@
                     <ul class="" style=" list-style: none outside none;">
                         <li style="  position: relative;
                                         display: inline;
-                                        margin: 2px;">Home >
+                                        margin: 2px;"> <a href="/"> Home ></a>
                         </li>
                         <li style="  position: relative;
                                         display: inline;
-                                        margin: 2px;">Product >
-                        </li>
-                        <li style="  position: relative;
-                                        display: inline;
-                                        margin: 2px;"><a href="/category/{{ product.category_id }}/{{ product.category.slug }}"> {{product.category}} >  </a>
-                        </li>
-                        <li  class="active" style="color: red  ; position: relative;
-                                        display: inline;
-                                        margin: 2px; ">{{product.title}}
-                        </li>
+                                        margin: 2px;
+                                        color: red;" > Product >
+                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -56,7 +50,7 @@
                                         {% for rs in products %}
                                         <article class="blog_item">
                                             <div class="blog_item_img">
-                                                <img class="card-img rounded-0" src="{{ rs.image.url }}" alt="">
+                                                <img class="card-img rounded-0" src="{{ rs.image.url }}" alt="" style="height: 380px ;width:450px">
                                                 <a href="#" class="blog_item_date" style="background-color: whitesmoke">
                                                     <h9 >Yüklenme tarihi:</h9>
                                                     <h9>{{rs.update_at}}</h9>
@@ -68,7 +62,7 @@
                                                 </a>
                                                 <p> {{ rs.description }} </p>
                                                 <ul class="blog-info-link">
-                                                    <li><i class="fa fa-user"></i> {{ user.first_name }}</li>
+                                                    <li><i class="fa fa-user"></i> {{ rs.user.first_name }} </li>
                                                 </ul>
                                             </div>
                                             {% endfor %}

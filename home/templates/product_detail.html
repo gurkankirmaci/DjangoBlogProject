@@ -55,8 +55,7 @@
                             <h2>{{product.title}}
                             </h2>
                             <ul class="blog-info-link mt-3 mb-4">
-                                <li><a href="#"><i class="fa fa-user"></i> {{ user.first_name }}</a></li>
-                                <li><a href="#"><i class="fa fa-comments"></i> </a></li>
+                                <li><a href="#"><i class="fa fa-user"></i> {{ product.user.first_name }}</a></li>
                             </ul>
                             <p class="excert">
                                 {{ product.detail|safe }}
@@ -71,7 +70,7 @@
                             <div class="col-md-4">
 
                                 <a href="{{rs.image.url}}" class="img-pop-up">
-                                    <div class="single-gallery-image" style="background: url({{rs.image.url}});"></div>
+                                    <div class="single-gallery-image" style="background: url({{rs.image.url}})"></div>
                                 </a>
                             </div>
                               {% endfor %}
