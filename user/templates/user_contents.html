@@ -1,0 +1,79 @@
+{% extends "homebase.html" %}
+
+{% block title %} User Profile {{ profile.username }}  {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+
+
+{% block content %}
+{% load static %}
+
+<div class="section" style="padding:50px">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class ="col-md-2">
+                {% include "user_panel.html"  %}
+            </div>
+
+            <div class="col-md-10">
+                <div class="section-title">
+                    <h3 class="title">User Blog list</h3>
+                    <a class="genric-btn success radius" href="/user/addcontent"> Add Blog </a>
+                </div>
+                <table class="shopping-cart-table table">
+                    <thead>
+                    <tr>
+
+                        <th class="text-left">Image</th>
+                        <th class="text-left">Title</th>
+                        <th class="text-left">Category</th>
+                        <th class="text-left">Gallery</th>
+                        <th class="text-left">Status</th>
+                        <th class="text-left">Amount</th>
+                        <th class="text-left">Date</th>
+                        <th class="text-left">Detail</th>
+                    </tr>
+                    {% for rs in contents %}
+                    <tr>
+
+                        <td class="text-left">
+                            <a href="/product/{{rs.id}}/{{rs.slug}}">
+                                <img src="{{ rs.image.url }}" style="height: 30px;">
+                            </a>
+                        </td>
+                        <td class="text-left">
+                            <a href="/product/{{rs.id}}/{{rs.slug}}">
+                                {{ rs.title }}
+                            </a>
+                        </td>
+
+                        <td class="text-left">{{ rs.category }}</td>
+                        <td> <a class="text-left">
+                            <a href="javascript:;" onclick="window.open('/user/contentaddimage/{{ rs.id }}','gallery','height=500,width=600,top=30,left=130')">
+                                <img src="{% static '' %}img/gallery.jpg" height="30"></a>
+                        </td>
+                        <td class="text-left">{{ rs.status }}</td>
+                        <td class="text-left">{{ rs.amount }}</td>
+                        <td class="text-left">{{ rs.create_at }}</td>
+                        <td class="text-left"><a class="genric-btn success radius" href="/user/contentedit/{{ rs.id}} " >Edit</a> </td>
+                        <td class="text-left"><a onclick="return confirm('Will be delete ! Are you sure ?')" class="genric-btn danger radius" href="/user/contentdelete/{{ rs.id}} ">Delete </a></td>
+
+                    {% endfor %}
+                    </tr>
+
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

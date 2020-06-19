@@ -60,7 +60,7 @@ class Product(models.Model):
     keywords = models.CharField(blank=True,max_length=255)
     description = models.CharField(blank=True,max_length=255)
     image=models.ImageField(blank=True,upload_to='images/')
-    amount=models.IntegerField()
+    amount=models.IntegerField(default=1)
     detail=RichTextUploadingField()
     slug = models.SlugField(null=False , unique=True)
     status = models.CharField(max_length=10,choices=STATUS)

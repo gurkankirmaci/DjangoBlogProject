@@ -71,7 +71,7 @@ def referanslar(request):
 
 def iletisim(request):
 
-    if request.method == 'POST':
+    if request.method == 'POST':           #bu bölüm formu kaydetmek için
         form = ContactFormu(request.POST)
         if form.is_valid():
             data=ContactFormMessage() #model ile baglanti kur
@@ -83,8 +83,9 @@ def iletisim(request):
             data.save() #veritabanına kaydet
             messages.success(request, "Mesajınız başarı ile gönderilmiştir,Teşekkür ederiz")
             return HttpResponseRedirect ('/iletisim')
+
+    setting= Setting.objects.get(pk=1)       #bu kısım forma ulaşmak için
     menu = Menu.objects.all()
-    setting= Setting.objects.get(pk=1)
     form= ContactFormu()
     context={'setting':setting,
              'form':form,
@@ -138,7 +139,7 @@ def product_search(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             category = Category.objects.all()
-
+            menu = Menu.objects.all()
             query = form.cleaned_data['query']  #formdan bilgiyi al
             catid = form.cleaned_data['catid']  #get form data
 
@@ -150,6 +151,7 @@ def product_search(request):
             #return HttpResponse(products)
             context = {'products': products,
                        'category': category,
+                       'menu': menu,
                         }
             return render(request, 'products_search.html',context)
     return HttpResponseRedirect('/')

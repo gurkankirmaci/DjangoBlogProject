@@ -174,7 +174,7 @@ def contentedit(request,id):
 def contentdelete(request,id):
     current_user = request.user
     Product.objects.filter(id=id, user_id = current_user.id).delete() #product silme
-    messages.success(request, 'Content deleted..')
+    messages.success(request, 'Product deleted..')
     return HttpResponseRedirect('/user/')
 
 
